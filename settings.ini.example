@@ -1,0 +1,23 @@
+#
+# Let's explain 
+# [script] - this is url after hostname, on your slash command http://192.168.100.1:12345/script
+# Script [what script you must run]
+# IncomingVariables [what variables you need from headers]
+# channel_id,channel_name,command,response_url,team_domain,team_id,text,token,user_id,user_name 
+# This variables passed to script
+#
+# 
+#
+
+
+[script]
+Script=.\Dummy-Script.ps1
+IncomingVariables=text,team_domain,user_name
+
+[testhello]
+Script=.\Dummy-TestHello.ps1
+IncomingVariables=user_name
+
+[testbuttonanswer]
+Script=.\Dummy-ButtonAnswer.ps1
+IncomingVariables=context,user_id
