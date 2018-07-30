@@ -1,7 +1,7 @@
 # ButtonCommander
 
 ### Disclaimer:
-Script was written for Mattermost v4.8, but may work on other version.
+Script was written for Mattermost v4.8, but may work on other version.  
 Script was written for PS v.3.0 (For Windows Server 2008 Std) but still work on PS 5.1 
 
 ## Description
