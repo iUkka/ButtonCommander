@@ -1,9 +1,10 @@
 #
 # Let's explain 
-# [script] - this is url after hostname, on your slash command http://192.168.100.1:12345/script
+# [script] - this is url after hostname, on your slash command http://192.168.0.1:12345/script
 # Script [what script you must run]
-# IncomingVariables [what variables you need from headers]
+# IncomingVariables [what variables you need from headers] https://docs.mattermost.com/developer/slash-commands.html
 # channel_id,channel_name,command,response_url,team_domain,team_id,text,token,user_id,user_name 
+# or custom from your script [example in testbuttonanswer section]
 # This variables passed to script
 #
 # 
