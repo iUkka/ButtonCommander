@@ -54,9 +54,10 @@ Server: Microsoft-HTTPAPI/2.0
 2) Удостоверьтесь, сервис доступен с удаленной машины (Файервол)
 3) Внесите изменения в скрипт Dummy-TestHello.ps1  
 Замените адрес 192.168.0.1 на на ваш IP.
-4) Создайте вебхуки script и test как на картинке.
-
-
+4) Создайте вебхуки script и test как на картинке.  
+<img src="https://user-images.githubusercontent.com/5823637/43399433-ac6a53c2-9413-11e8-91b4-12b3cd1dda6d.png" alt="" width="200" /> <img src="https://user-images.githubusercontent.com/5823637/43399471-d459c58e-9413-11e8-9471-209d3ac71c5f.png" alt="" width="200" />
+5) Из любого канала #Mattermost вызвайте /script или /test (можно с параметрами, скриптах группы [script] Обрабатываются аргументы. 
+ 
 ### Known issues:
 Если вы получаете ошибку 
 **Команда с триггером 'test' завершилась с ошибкой**  
