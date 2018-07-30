@@ -10,7 +10,7 @@
 ###### settings.ini
 INI файл для управления работы скриптов, должен называться setting.ini и находится в папке со скриптом, либо быть указан другой ini файл через параметры. 
 ```
-.\ButtonCommander.ps1 -Config C:\Users\akorolev\Other\myini.ini**
+.\ButtonCommander.ps1 -Config C:\Users\akorolev\Other\myini.ini
 ```
 Формат INI файла описан в example файле.
 
