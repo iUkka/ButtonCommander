@@ -42,7 +42,7 @@ INI файл для управления работы скриптов, долж
 
 Включайте Verbose mode и тестируйте свои сообщения.
 
-**Например, тестирование поведения сервиса при обработке секции [script]:
+**Например, тестирование поведения сервиса при обработке секции [script]:**
 ```
 PS C:\ButtonCommander> $1 = .\Dummy-Script.ps1
 PS C:\ButtonCommander> (Invoke-WebRequest -Method Post -uri "http://localhost:12345/script" -body $1).Rawcontent
