@@ -5,7 +5,7 @@
 - [Описание на русском после описания на английском](#russian)
 - [Disclaimer](#Disclaimer)
 - [Prerequests](#Prerequests)
-- [Known issues](#кnown-issues)
+- [Known issues](#Issues)
 - [Features](#Features)
 
 I am sorry, my english is not native language, but i still try to learn it.
@@ -74,7 +74,7 @@ Change ip 192.168.0.1 to your ip.
 <img src="https://user-images.githubusercontent.com/5823637/43399433-ac6a53c2-9413-11e8-91b4-12b3cd1dda6d.png" alt="" width="200" /> <img src="https://user-images.githubusercontent.com/5823637/43399471-d459c58e-9413-11e8-9471-209d3ac71c5f.png" alt="" width="200" />
 5) From any channel [Mattermost](http://www.mattermost.org/) run /script or /test (you can use with parameters, on command [script] you may recieve some arguments.)
  
-### Known issues
+### Issues
 If you get an error 
 **Command with 'test' trigger failed**  
 Check your logs in [Mattermost](http://www.mattermost.org/)
