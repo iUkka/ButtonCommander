@@ -1,6 +1,12 @@
 # ButtonCommander
 
-Описание на русском после описания на английском.
+## Table of Contents
+
+- [Описание на русском после описания на английском](#russian)
+- [Disclaimer](#Disclaimer)
+- [Prerequests](#Prerequests)
+- [Issues](#Known issues)
+- [Features](#Features)
 
 I am sorry, my english is not native language, but i still try to learn it.
 
@@ -81,7 +87,7 @@ Check https://github.com/iUkka/ButtonCommander/README.md#Prerequests item one.
 If you get on a sort of working JSON response to **No text specified** then this is a more complex problem. I tried to bypass it in the script and it partially worked. The problem here is the mismatch of line translation between Windows and Linux systems, multiplied by some internal micro-problems. I didn't dig any deeper.  
 **_On multiline texts try to avoid the newline in the response_**, put the answer in one line with the formatting, use Write-Output or convert it to a String. Use magic!
 
-###Features:
+###Features
 1) Since just killing a working socket is hard, inconvenient and wrong, a feature was made to stop the service. To stop the service, it is enough to send a request for a socket with an address ending with stop. This is the most correct and correct way to stop the service!  
 For example:
 ```
@@ -94,7 +100,9 @@ For example:
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/reload"
 ```
 
-## Description
+##Russian
+
+## Описание
 Это сервис для [Mattermost](http://www.mattermost.org/), написан удобства запуска различных powershell скриптов из slash/custom команд.  
   
 Краткое описание:  
@@ -140,7 +148,7 @@ Server: Microsoft-HTTPAPI/2.0
 ```
 Так как запрос был сделан локально, то text, team_domain, user_name не передались, это нормально. За исключением этого все отработало штатно, на выход получен ответ без ошибок.
 
-### Prerequests:
+### Подготовка
   * перед пользованием скрипта необходимо переименовать settings.ini.example в settings.ini
   * у пользователя должно быть право на чтение и запуск скриптов, описанных в ini файле
   * у пользователя должно быть право на создание сокета.
@@ -153,7 +161,7 @@ Server: Microsoft-HTTPAPI/2.0
 <img src="https://user-images.githubusercontent.com/5823637/43399433-ac6a53c2-9413-11e8-91b4-12b3cd1dda6d.png" alt="" width="200" /> <img src="https://user-images.githubusercontent.com/5823637/43399471-d459c58e-9413-11e8-9471-209d3ac71c5f.png" alt="" width="200" />
 5) Из любого канала [Mattermost](http://www.mattermost.org/) вызвайте /script или /test (можно с параметрами, в скриптах группы [script] обрабатываются аргументы.)
  
-### Known issues:
+### Известные ошибки
 Если вы получаете ошибку 
 **Команда с триггером 'test' завершилась с ошибкой**  
 то у вас скорее всего в логах [Mattermost](http://www.mattermost.org/) есть строки с надписью
@@ -166,7 +174,7 @@ Server: Microsoft-HTTPAPI/2.0
 Если вы получаете на вроде как рабочий JSON ответ **No text specified** то это более комплексная проблема. Я попытался обойти ее в скрипте, и это частично получилось. Тут проблема в несоответствии перевода строки между Windows и Linux системами, помноженное на какие-то внутренние микропроблемы. Более глубоко я не копал.  
 **_Старайтесь избегать виндовых переводов строк в ответе скриптов_**, там где есть возможность перевдите ответ одной строкой с форматированием, передавайте ответы с помощью Write-Output, конвертируйте в тип String.  
 
-###Features:
+###Фичи
 У сервиса есть два бага, которые определены в фичи. 
 1) Так как просто убить рабочий сокет тяжело, неудобно и неправильно, была сделана фича для остановки сервиса. Для остановки сервиса достаточно послать запрос на сокет с адресом, заканчивающимся на stop. Это самый корректный и верный способ остановки сервиса!  
 Например:
