@@ -3,10 +3,10 @@
 ## Table of Contents
 
 - [Описание на русском после описания на английском](#russian)
-- [Disclaimer](#Disclaimer)
-- [Prerequests](#Prerequests)
-- [Known issues](#Issues)
-- [Features](#Features)
+- [Disclaimer](#disclaimer)
+- [Prerequests](#prerequests)
+- [Known issues](#issues)
+- [Features](#features)
 
 I am sorry, my english is not native language, but i still try to learn it.
 
@@ -100,7 +100,7 @@ For example:
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/reload"
 ```
 
-##Russian
+#Russian
 
 ## Описание
 Это сервис для [Mattermost](http://www.mattermost.org/), написан удобства запуска различных powershell скриптов из slash/custom команд.  
