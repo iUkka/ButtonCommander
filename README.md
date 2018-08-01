@@ -87,7 +87,7 @@ Check https://github.com/iUkka/ButtonCommander/README.md#Prerequests item one.
 If you get on a sort of working JSON response to **No text specified** then this is a more complex problem. I tried to bypass it in the script and it partially worked. The problem here is the mismatch of line translation between Windows and Linux systems, multiplied by some internal micro-problems. I didn't dig any deeper.  
 **_On multiline texts try to avoid the newline in the response_**, put the answer in one line with the formatting, use Write-Output or convert it to a String. Use magic!
 
-###Features
+## Features
 1) Since just killing a working socket is hard, inconvenient and wrong, a feature was made to stop the service. To stop the service, it is enough to send a request for a socket with an address ending with stop. This is the most correct and correct way to stop the service!  
 For example:
 ```
@@ -99,8 +99,9 @@ For example:
 ```
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/reload"
 ```
+-------------
 
-#Russian
+# Russian
 
 ## Описание
 Это сервис для [Mattermost](http://www.mattermost.org/), написан удобства запуска различных powershell скриптов из slash/custom команд.  
