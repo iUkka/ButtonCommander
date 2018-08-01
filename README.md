@@ -45,7 +45,7 @@ Section [testhello] generates JSON which no change takes place in the [Mattermos
 
 ** Attention: ** Formatting of messages and / or creating JSON file is entirely the merit of the user :)  
 Enable Verbose mode and test your messages.  
-** For example, testing the service behavior when processing the [script] section]:**
+**For example, testing the service behavior when processing the [script] section:**
 ```
 PS C:\ButtonCommander> $1 = .\Dummy-Script.ps1
 PS C:\ButtonCommander> (Invoke-WebRequest -Method Post -uri "http://localhost:12345/script" -body $1).Rawcontent
@@ -60,7 +60,7 @@ Server: Microsoft-HTTPAPI/2.0
     "text":  "You passed 0 arguments:\r\nNamed param  team_domain is \r\n"
 }
 ```
-Since the request was made locally, the text, team_domain, user_name were not passed, this is normal. Except that, everything worked normally, the output response is received without error.
+Since the request was made locally (not from Mattermost, just pure powershell), variables text, team_domain, user_name were not passed. Except that, everything worked normally, the output response is received without error.
 
 ### Prerequests
 1) Make the config file [Mattermost](http://www.mattermost.org/) in section "AllowedUntrustedInternalConnections" IP of the server that will run this script. Next, all the mention about the IP will be about this one.
