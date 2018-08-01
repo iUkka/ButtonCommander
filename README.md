@@ -5,12 +5,12 @@
 - [Описание на русском после описания на английском](#russian)
 - [Disclaimer](#Disclaimer)
 - [Prerequests](#Prerequests)
-- [Issues](#Known issues)
+- [Issues](#кnown-issues)
 - [Features](#Features)
 
 I am sorry, my english is not native language, but i still try to learn it.
 
-### Disclaimer:
+## Disclaimer
 Script was written for Mattermost v4.8, but may work on other version.  
 Script was written for PowerShell v.3.0 (For Windows Server 2008 Std) but still works on PowerShell 5.1 
 
@@ -62,7 +62,7 @@ Server: Microsoft-HTTPAPI/2.0
 ```
 Since the request was made locally, the text, team_domain, user_name were not passed, this is normal. Except that, everything worked normally, the output response is received without error.
 
-### Prerequests:
+### Prerequests
 1) Make the config file [Mattermost](http://www.mattermost.org/) in section "AllowedUntrustedInternalConnections" IP of the server that will run this script. Next, all the mention about the IP will be about this one.
 2) Make sure the service is available from the remote machine (Firewall)
 3) make changes to the Dummy-TestHello script.ps1
@@ -74,7 +74,7 @@ Change ip 192.168.0.1 to your ip.
 <img src="https://user-images.githubusercontent.com/5823637/43399433-ac6a53c2-9413-11e8-91b4-12b3cd1dda6d.png" alt="" width="200" /> <img src="https://user-images.githubusercontent.com/5823637/43399471-d459c58e-9413-11e8-9471-209d3ac71c5f.png" alt="" width="200" />
 5) From any channel [Mattermost](http://www.mattermost.org/) run /script or /test (you can use with parameters, on command [script] you may recieve some arguments.)
  
-### Known issues:
+### Known issues
 If you get an error 
 **Command with 'test' trigger failed**  
 Check your logs in [Mattermost](http://www.mattermost.org/)
