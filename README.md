@@ -5,7 +5,7 @@
 - [Описание на русском после описания на английском](#russian)
 - [Disclaimer](#Disclaimer)
 - [Prerequests](#Prerequests)
-- [Issues](#кnown-issues)
+- [Known issues](#кnown-issues)
 - [Features](#Features)
 
 I am sorry, my english is not native language, but i still try to learn it.
