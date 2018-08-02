@@ -27,7 +27,7 @@ setting.ini must be located in the folder with the script, or be specified throu
 The format of the INI file is described in the example file.
 
 ###### ButtonCommander.ps1
-You can start the service from the command line (with -Verbose key good for debugging), the scheduler, or as service.
+You can start the service from the command line (use -Verbose key for debugging), the scheduler, or as a service.
 
 Startup keys:
 ```
@@ -38,12 +38,14 @@ Startup keys:
 ```
 
 The service may receives data from scripts via return or write-output functions.
-If recieved data not in JSON format, they automatically convert answer to text.
+If recieved data not in JSON format, the answer till be automatically converted to text.
+
 Examples:  
-The script from [script] section return simple multiple strings. It turns to text message.  
+The script from [script] section returns multiple strings which are converted to the plain text.
 Script from section [testhello] generates valid JSON (shows forms with buttons), and processed in the [testbuttonanswer] section.
 
-** Attention: ** Formatting of messages and / or creating JSON file is your own work :)  
+**Attention:** Messages formatting and / or JSON creation is your own work :)  
+
 Enable Verbose mode and test your messages.  
 
 How to test your script:
@@ -62,21 +64,21 @@ Server: Microsoft-HTTPAPI/2.0
     "text":  "You passed 0 arguments:\r\nNamed param  team_domain is \r\n"
 }
 ```
-Since the request was made locally (not from Mattermost, just pure powershell), variables text, team_domain, user_name were not passed. Except that, everything worked normally, the output response is received without error.
+Since the request was made locally (not from Mattermost, just pure powershell), `variables text`, `team_domain`, `user_name` were skipped. Except that, everything worked normally, the output response is received without error.
 
 ### Prerequests
-1) Be sure your [Mattermost trust your machine](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to)
-2) Make sure the service is available from the remote machine (Firewall)
-3) make changes to the Dummy-TestHello script.ps1
-Change ip 192.168.0.1 to your ip (where script located).
-4) Run script .\ButtonCommander.ps1 (or .\ButtonCommander.ps1 -Verbose), but be sure about two things:
-  * the current user must have the right to read and run the scripts described in the ini file.
-  * the current user must have the right to create a socket.
-5) Create webhook script and test just like the picture.  
+1) Be sure your [Mattermost trusts your machine](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to)
+2) Make sure the service is accessible from the remote machine (Firewall)
+3) Make changes in the `Dummy-TestHello script.ps1`
+Change the ip address frm 192.168.0.1 to your ip (where the script is located).
+4) Run script `.\ButtonCommander.ps1` (or `.\ButtonCommander.ps1 -Verbose`), but make sure, that:
+    * current user must have the permissions to read and run the scripts, described in the `ini` file.
+    * current user must have the permissions to create a socket.
+5) Create webhook script and test just like on the picture.  
 <img src="https://user-images.githubusercontent.com/5823637/43399433-ac6a53c2-9413-11e8-91b4-12b3cd1dda6d.png" alt="" width="200" /> <img src="https://user-images.githubusercontent.com/5823637/43399471-d459c58e-9413-11e8-9471-209d3ac71c5f.png" alt="" width="200" />
-5) From any channel [Mattermost](http://www.mattermost.org/) run command /script or /test (you can use with parameters, on command [script] you may recieve some arguments.)
- 
-### Issues
+5) From any [Mattermost](http://www.mattermost.org/) channel run the command `/script` or `/test` (you can use it with parameters, on [script] section you may describe some arguments.)
+
+### Known Issues ###
 If you get an error 
 **Command with 'test' trigger failed**  
 Check your logs in [Mattermost](http://www.mattermost.org/)
@@ -87,17 +89,21 @@ Check https://github.com/iUkka/ButtonCommander/README.md#Prerequests item one.
 
 **No text specified**
 If you get on working JSON response like **No text specified** in Mattermost, this is a more complex problem. I tried to bypass it in the script and it partially worked. The problem here is difference of EOL between Windows and Linux systems, multiplied by some internal micro-problems. I didn't dig any deeper.  
-**_On multiline texts try to avoid the newline in the response_**, put the answer in one line with the formatting, use Write-Output or convert it to a String. Use magic!
+
+**_On multiline texts try to avoid the newline in the response_**, put the answer on the same line with the formatting, use Write-Output or convert it to a String. Use the magic!
 
 ## Features
-1) Since killing a working socket is hard, inconvenient and wrong, i made feature to stop the service remotely. To stop the service, it is enough to send a request for a socket with an address ending with 'stop'. This is the most correct way to stop the service.  
-For example:
+1) Since killing a working socket is hard, inconvenient and wrong, I added the feature, allowing to stop the service remotely. To do this, it is enough to send a request for a socket with an address ending with 'stop'. Please use this method to stop the service.
+
+Example:
 ```
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/stop"
 ```
-2) After changing the config, you can make the service re-read ini file on the fly instead of restarting the service.
-To do this, send a request to a socket with an address ending in 'reload'.  
-For example:
+
+2) After changing the config, you can make the service to re-read the ini file on the fly instead of restarting the service.
+To do this, send a request to a socket with an address ending with 'reload'.  
+
+Example:
 ```
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/reload"
 ```
