@@ -11,24 +11,24 @@
 I am sorry, my english is not native language, but i still try to learn it.
 
 ## Disclaimer
-Script was written for Mattermost v4.8, but may work on other version.  
+Script was written for Mattermost v4.8 Team Edition, but may work on other version.  
 Script was written for PowerShell v.3.0 (For Windows Server 2008 Std) but still works on PowerShell 5.1 
 
 ## Description
-This backend for [Mattermost](http://www.mattermost.org/) was written for the convenience of running various powershell scripts from slash/custom commands.  
+This backend for [Mattermost](http://www.mattermost.org/) was written for the convenience of running various powershell scripts via slash/custom commands.  
 Product example, not included to source:  
 ![buttoncommanderwho](https://user-images.githubusercontent.com/5823637/43575686-1d451b3e-9650-11e8-8926-8ccb4bfb3390.gif)
 
 
 ###### settings.ini
-INI file to control operation of the script has to be in the setting.ini and is located in the folder with the script, or be specified another ini file through the parameters. 
+setting.ini must be located in the folder with the script, or be specified through the parameters. 
 ```
 .\ButtonCommander.ps1 -Config C:\Users\akorolev\Other\myini.ini
 ```
 The format of the INI file is described in the example file.
 
 ###### ButtonCommander.ps1
-You can start the service from the command line (with the-Verbose key it is convenient to find problems), the scheduler, the service and in General as soon as it is convenient.
+You can start the service from the command line (with -Verbose key good for debugging), the scheduler, or as service.
 
 Startup keys:
 ```
@@ -38,16 +38,17 @@ Startup keys:
 -Verbose [Default:$false]
 ```
 
-The service receives data from scripts received via return or write-output and sends it to the channel from which the request came.
-If the data came in the form of JSON, the conversion does not occur, and in 
-ermost](http://www.mattermost.org/) the source JSON is sent.  
+The service may receives data from scripts via return or write-output functions.
+If recieved data not in JSON format, they automatically convert answer to text.
 Examples:  
-The [script] section returns string data that is converted to JSON by the service. It turns out a simple text message.  
-Section [testhello] generates JSON which no change takes place in the [Mattermost](http://www.mattermost.org/) and shows forms with buttons, which in turn are processed in the [testbuttonanswer] section
+The script from [script] section return simple multiple strings. It turns to text message.  
+Script from section [testhello] generates valid JSON (shows forms with buttons), and processed in the [testbuttonanswer] section.
 
-** Attention: ** Formatting of messages and / or creating JSON file is entirely the merit of the user :)  
+** Attention: ** Formatting of messages and / or creating JSON file is your own work :)  
 Enable Verbose mode and test your messages.  
-**For example, testing the service behavior when processing the [script] section:**
+
+How to test your script:
+**For example, test processing the [script] section:**
 ```
 PS C:\ButtonCommander> $1 = .\Dummy-Script.ps1
 PS C:\ButtonCommander> (Invoke-WebRequest -Method Post -uri "http://localhost:12345/script" -body $1).Rawcontent
@@ -65,16 +66,16 @@ Server: Microsoft-HTTPAPI/2.0
 Since the request was made locally (not from Mattermost, just pure powershell), variables text, team_domain, user_name were not passed. Except that, everything worked normally, the output response is received without error.
 
 ### Prerequests
-1) Make the config file [Mattermost](http://www.mattermost.org/) in section "AllowedUntrustedInternalConnections" IP of the server that will run this script. Next, all the mention about the IP will be about this one.
+1) Be sure your [Mattermost trust your machine](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to)
 2) Make sure the service is available from the remote machine (Firewall)
 3) make changes to the Dummy-TestHello script.ps1
-Change ip 192.168.0.1 to your ip.
+Change ip 192.168.0.1 to your ip (where script located).
 4) Run script .\ButtonCommander.ps1 (or .\ButtonCommander.ps1 -Verbose), but be sure about two things:
   * the current user must have the right to read and run the scripts described in the ini file.
   * the current user must have the right to create a socket.
 5) Create webhook script and test just like the picture.  
 <img src="https://user-images.githubusercontent.com/5823637/43399433-ac6a53c2-9413-11e8-91b4-12b3cd1dda6d.png" alt="" width="200" /> <img src="https://user-images.githubusercontent.com/5823637/43399471-d459c58e-9413-11e8-9471-209d3ac71c5f.png" alt="" width="200" />
-5) From any channel [Mattermost](http://www.mattermost.org/) run /script or /test (you can use with parameters, on command [script] you may recieve some arguments.)
+5) From any channel [Mattermost](http://www.mattermost.org/) run command /script or /test (you can use with parameters, on command [script] you may recieve some arguments.)
  
 ### Issues
 If you get an error 
@@ -86,17 +87,17 @@ Check your logs in [Mattermost](http://www.mattermost.org/)
 Check https://github.com/iUkka/ButtonCommander/README.md#Prerequests item one. 
 
 **No text specified**
-If you get on a sort of working JSON response to **No text specified** then this is a more complex problem. I tried to bypass it in the script and it partially worked. The problem here is the mismatch of line translation between Windows and Linux systems, multiplied by some internal micro-problems. I didn't dig any deeper.  
+If you get on working JSON response like **No text specified** in Mattermost, this is a more complex problem. I tried to bypass it in the script and it partially worked. The problem here is difference of EOL between Windows and Linux systems, multiplied by some internal micro-problems. I didn't dig any deeper.  
 **_On multiline texts try to avoid the newline in the response_**, put the answer in one line with the formatting, use Write-Output or convert it to a String. Use magic!
 
 ## Features
-1) Since just killing a working socket is hard, inconvenient and wrong, a feature was made to stop the service. To stop the service, it is enough to send a request for a socket with an address ending with stop. This is the most correct and correct way to stop the service!  
+1) Since killing a working socket is hard, inconvenient and wrong, i made feature to stop the service remotely. To stop the service, it is enough to send a request for a socket with an address ending with 'stop'. This is the most correct way to stop the service.  
 For example:
 ```
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/stop"
 ```
-2) After changing the config file, you can make the service re-read it on the fly instead of restarting the service.
-To do this, send a request to a socket with an address ending in reload.  
+2) After changing the config, you can make the service re-read ini file on the fly instead of restarting the service.
+To do this, send a request to a socket with an address ending in 'reload'.  
 For example:
 ```
 Invoke-RestMethod -Method get -Uri "http://localhost:12345/reload"
