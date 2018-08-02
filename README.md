@@ -8,7 +8,6 @@
 - [Known issues](#issues)
 - [Features](#features)
 
-I am sorry, my english is not native language, but i still try to learn it.
 
 ## Disclaimer
 Script was written for Mattermost v4.8 Team Edition, but may work on other version.  
