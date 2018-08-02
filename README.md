@@ -16,6 +16,8 @@ Script was written for PowerShell v.3.0 (For Windows Server 2008 Std) but still 
 
 ## Description
 This backend for [Mattermost](http://www.mattermost.org/) was written for the convenience of running various powershell scripts from slash/custom commands.
+product example, not included to source:  
+![buttoncommanderwho](https://user-images.githubusercontent.com/5823637/43575686-1d451b3e-9650-11e8-8926-8ccb4bfb3390.gif)
 
 
 ###### settings.ini
