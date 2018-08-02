@@ -64,7 +64,7 @@ Server: Microsoft-HTTPAPI/2.0
     "text":  "You passed 0 arguments:\r\nNamed param  team_domain is \r\n"
 }
 ```
-Since the request was made locally (not from Mattermost, just pure powershell), `variables text`, `team_domain`, `user_name` were skipped. Except that, everything worked normally, the output response is received without error.
+Since the request was made locally (not from Mattermost, just pure powershell), variables `text`, `team_domain`, `user_name` were skipped. Except that, everything worked normally, the output response is received without error.
 
 ### Prerequests
 1) Be sure your [Mattermost trusts your machine](https://docs.mattermost.com/administration/config-settings.html#allow-untrusted-internal-connections-to)
